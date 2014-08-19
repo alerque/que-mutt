@@ -1,6 +1,11 @@
 # Read passwords on startup from encrypted file
 source "gpg --decrypt --quiet --no-tty ~/.private/mutt.gpg |"
 
+## A little bit about me
+set realname="Caleb Maclennan"
+set hostname=alerque.com
+alternates caleb@(alerque|chiefworks|ouraynet|pld-linux).com
+
 # Account: alerque@gmail.com
 set folder = imaps://imap.gmail.com/
 set imap_user = alerque@gmail.com
@@ -8,16 +13,111 @@ set imap_pass = $my_gmailpw
 set spoolfile = +INBOX
 mailboxes = +INBOX
 
-# General options
+# Mailbox options
 set postponed = +[Gmail]/Drafts
 unset imap_passive
 set imap_keepalive = 300
 set mail_check = 120
 
+spam "X-Spam-Status: .*score=([-0-9.]+).*" "%1"
+
+# General options
+set charset=utf-8
+set help=no
+set wait_key=no
+set markers=no
+set confirmappend=no
+set tilde
+set simple_search="~f %s | ~s %s | ~y %s"
+# don't move messages or keep track of read vs seen
+set mark_old=no
+set move=no
+# include messages in reply
+set include=yes
+set attribution="%n wrote:"
+#set sort=recv
+set strict_threads=no
+# edit with external editor
+set autoedit
+# view message headers in editor
+set edit_headers=yes
+# no prompt for reply stuff
+set fast_reply
+## default answer to print
+set print=ask-no
+# when editing emails, run vim script
+# script starts in insert mode on a new line AFTER the header
+set editor="vim -c ':Fip'"
+ignore * unignore to x-spam-status
+hdr_order from reply-to to date subject x-label x-spam-status
+
+
 # Setup caches (~/.cache should be encrypted fs and/or RAM disk)
 set header_cache = ~/.cache/mutt/
 set message_cachedir = ~/.cache/mutt/
 
+# Pager config
+set pager_index_lines=10
+set pager_context=1
+set pager_stop
+set folder_format="(%N) %f"
+
+# Keybindings
+bind index,pager l edit-label
+bind index L limit
+bind pager u exit
+bind index u sync-mailbox
+#bind index,pager u undelete-message
+bind index,pager R group-reply
+bind pager <up> previous-line
+bind pager <down> next-line
+bind pager k previous-line
+bind pager j next-line
+bind index,pager n next-entry
+bind index,pager p previous-entry
+
+# Macros
+#macro index S "gS!mairix "
+macro index A "T~U\n;N"
+#macro index t "l~N\n"
+#macro index F "l~F\n"
+
+# Layout
+set status_on_top
+set index_format="%-20.20n %3C %Z %{%H:%M %b %d} %-15y %s"
+
+# Style
+color hdrdefault  white default
+color header      white default ^(from|to|cc):
+color header      magenta  default  ^(date|reply-to):
+color header      red      default  ^(subject):
+color header      green    default  "^mail-followup-to: *"
+color header      magenta  default  "^x-mailer: *"
+color header      magenta  default  "^user-agent: *"
+color header      magenta  default  "^x-operating-system: *"
+color header      red      default  "^x-mailing-list: *"
+
+color quoted blue default
+color quoted1 red default
+color quoted2 magenta default
+color signature red default
+color indicator black cyan
+color error red default
+color status white blue
+color tree red default
+color tilde magenta default
+color message cyan default
+color markers cyan default
+color attachment yellow black
+color search black yellow
+color index green default ~N
+
+color body red default "(http(s?)|ftp|news|telnet|gopher|mailto)://[^ \"]+"
+color body red default [-a-z_0-9.]+@[-a-z_0-9.]+
+color underline green default
+
+mono header underline ^Subject:
+mono quoted bold
 # Disable command entry in all modes so passwords cannot be easily extracted
 # from running sessions
 bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
