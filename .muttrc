@@ -2,27 +2,32 @@
 source "gpg --decrypt --quiet --no-tty ~/.private/mutt.gpg |"
 
 ## A little bit about me
-set realname="Caleb Maclennan"
-set hostname=alerque.com
-alternates caleb@(alerque|chiefworks|ouraynet|pld-linux).com
+set realname = "Caleb Maclennan"
+set hostname = alerque.com
+set from = caleb@alerque.com
+alternates caleb@(alerque|chiefworks|ouraynet|pld-linux).com \
+	alerque@gmail.com caleb@izmirprotestan.org
 
-# Account: alerque@gmail.com
-set folder = imaps://imap.gmail.com/
-set imap_user = alerque@gmail.com
-set imap_pass = $my_gmailpw
-set spoolfile = +INBOX
-mailboxes = +INBOX
-
-# Mailbox options
-set postponed = +[Gmail]/Drafts
+# Default Mailbox options
 unset imap_passive
 set imap_keepalive = 300
 set mail_check = 120
+set imap_check_subscribed
+set ssl_force_tls = yes
 
-spam "X-Spam-Status: .*score=([-0-9.]+).*" "%1"
+# Account: alerque@gmail.com
+set folder = imaps://alerque@imap.gmail.com/
+set imap_user = alerque@gmail.com
+set imap_pass = $my_gmailpw
+set spoolfile = +INBOX
+#mailboxes = +INBOX
+set postponed = +[Gmail]/Drafts
+unset record
+set smtp_url=smtps://$imap_user:$imap_pass@smtp.gmail.com
 
 # General options
 set charset=utf-8
+set use_from = yes
 set help=no
 set wait_key=no
 set markers=no
@@ -35,7 +40,11 @@ set move=no
 # include messages in reply
 set include=yes
 set attribution="%n wrote:"
-#set sort=recv
+set sort=threads
+#set sort_aux = reverse-last-date-received
+set sort_aux = last-date-received
+#set sort_re
+#set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 set strict_threads=no
 # edit with external editor
 set autoedit
@@ -48,13 +57,14 @@ set print=ask-no
 # when editing emails, run vim script
 # script starts in insert mode on a new line AFTER the header
 set editor="vim -c ':Fip'"
+set uncollapse_jump
 ignore * unignore to x-spam-status
 hdr_order from reply-to to date subject x-label x-spam-status
-
+spam "X-Spam-Status: .*score=([-0-9.]+).*" "%1"
 
 # Setup caches (~/.cache should be encrypted fs and/or RAM disk)
 set header_cache = ~/.cache/mutt/
-set message_cachedir = ~/.cache/mutt/
+#set message_cachedir = ~/.cache/mutt/
 
 # Pager config
 set pager_index_lines=10
@@ -63,10 +73,15 @@ set pager_stop
 set folder_format="(%N) %f"
 
 # Keybindings
-bind index,pager l edit-label
+#bind index,pager l edit-label
+bind index gg first-entry
+bind pager gg top
+bind index G last-entry
+bind pager G bottom
 bind index L limit
 bind pager u exit
 bind index u sync-mailbox
+bind index <space> collapse-thread
 #bind index,pager u undelete-message
 bind index,pager R group-reply
 bind pager <up> previous-line
@@ -82,9 +97,26 @@ macro index A "T~U\n;N"
 #macro index t "l~N\n"
 #macro index F "l~F\n"
 
+macro index e "<tag-pattern>~R !~D !~F<enter>\
+<tag-prefix><save-message>+[Gmail]/All <enter>" \
+"Archive"
+macro index e "<tag-pattern>~R !~D !~F<enter>\
+<tag-prefix><save-message>+[Gmail]/All <enter>" \
+"Archive"
+
+# Sidebar stuff
+set sidebar_visible = yes
+set sidebar_sort = yes
+macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
+macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+
 # Layout
 set status_on_top
-set index_format="%-20.20n %3C %Z %{%H:%M %b %d} %-15y %s"
+set date_format = "%m/%d" # or "%b %d %H:%M"
+set index_format="[ %Z ] %D %-20.20n %s" # for labels add %-15y
 
 # Style
 color hdrdefault  white default
