@@ -13,7 +13,7 @@ unset imap_passive
 set imap_keepalive = 300
 set mail_check = 120
 set imap_check_subscribed
-set ssl_force_tls = yes
+set ssl_force_tls
 
 # Account: alerque@gmail.com
 set folder = imaps://alerque@imap.gmail.com/
@@ -23,54 +23,47 @@ set spoolfile = +INBOX
 #mailboxes = +INBOX
 set postponed = +[Gmail]/Drafts
 unset record
-set smtp_url=smtps://$imap_user:$imap_pass@smtp.gmail.com
+set smtp_url = smtps://$imap_user:$imap_pass@smtp.gmail.com
 
 # General options
-set charset=utf-8
-set use_from = yes
-set help=no
-set wait_key=no
-set markers=no
-set confirmappend=no
+set charset = utf-8
+set use_from
+set use_domain
+unset help
+unset wait_key
+unset markers
+unset confirmappend
 set tilde
-set simple_search="~f %s | ~s %s | ~y %s"
-# don't move messages or keep track of read vs seen
-set mark_old=no
-set move=no
-# include messages in reply
-set include=yes
-set attribution="%n wrote:"
-set sort=threads
-#set sort_aux = reverse-last-date-received
+set simple_search = "~f %s | ~s %s | ~y %s"
+unset mark_old
+unset move
+set include
+set attribution = "%n wrote:"
+set sort = threads
 set sort_aux = last-date-received
 #set sort_re
 #set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
-set strict_threads=no
-# edit with external editor
+unset strict_threads
 set autoedit
-# view message headers in editor
-set edit_headers=yes
-# no prompt for reply stuff
+set edit_headers
 set fast_reply
-## default answer to print
-set print=ask-no
-# when editing emails, run vim script
-# script starts in insert mode on a new line AFTER the header
-set editor="vim -c ':Fip'"
+set print = ask-no
+set editor = "vim -c ':Fip'"
 set uncollapse_jump
+unset abort_nosubject
 ignore * unignore to x-spam-status
 hdr_order from reply-to to date subject x-label x-spam-status
 spam "X-Spam-Status: .*score=([-0-9.]+).*" "%1"
 
 # Setup caches (~/.cache should be encrypted fs and/or RAM disk)
-set header_cache = ~/.cache/mutt/
-#set message_cachedir = ~/.cache/mutt/
+set header_cache = ~/.cache/mutt/headers/
+set message_cachedir = ~/.cache/mutt/bodies/
 
 # Pager config
 set pager_index_lines=10
 set pager_context=1
 set pager_stop
-set folder_format="(%N) %f"
+set folder_format = "(%N) %f"
 
 # Keybindings
 #bind index,pager l edit-label
@@ -105,8 +98,8 @@ macro index e "<tag-pattern>~R !~D !~F<enter>\
 "Archive"
 
 # Sidebar stuff
-set sidebar_visible = yes
-set sidebar_sort = yes
+set sidebar_visible
+set sidebar_sort
 macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
 macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
 bind index,pager \CP sidebar-prev
@@ -152,19 +145,19 @@ mono header underline ^Subject:
 mono quoted bold
 
 # GPG stuff (from sample rc file)
-set pgp_decode_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
-set pgp_verify_command="gpg --status-fd=2 --no-verbose --quiet --batch --output - --verify %s %f"
-set pgp_decrypt_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
-set pgp_sign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f"
-set pgp_clearsign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f"
-set pgp_encrypt_only_command="pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
-set pgp_encrypt_sign_command="pgpewrap gpg %?p?--passphrase-fd 0? --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
-set pgp_import_command="gpg --no-verbose --import %f"
-set pgp_export_command="gpg --no-verbose --export --armor %r"
-set pgp_verify_key_command="gpg --verbose --batch --fingerprint --check-sigs %r"
-set pgp_list_pubring_command="gpg --no-verbose --batch --quiet --with-colons --list-keys %r" 
-set pgp_list_secring_command="gpg --no-verbose --batch --quiet --with-colons --list-secret-keys %r" 
-set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
+set pgp_decode_command = "gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
+set pgp_verify_command = "gpg --status-fd=2 --no-verbose --quiet --batch --output - --verify %s %f"
+set pgp_decrypt_command = "gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
+set pgp_sign_command = "gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f"
+set pgp_clearsign_command = "gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f"
+set pgp_encrypt_only_command = "pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
+set pgp_encrypt_sign_command = "pgpewrap gpg %?p?--passphrase-fd 0? --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
+set pgp_import_command = "gpg --no-verbose --import %f"
+set pgp_export_command = "gpg --no-verbose --export --armor %r"
+set pgp_verify_key_command = "gpg --verbose --batch --fingerprint --check-sigs %r"
+set pgp_list_pubring_command = "gpg --no-verbose --batch --quiet --with-colons --list-keys %r" 
+set pgp_list_secring_command = "gpg --no-verbose --batch --quiet --with-colons --list-secret-keys %r" 
+set pgp_good_sign = "^\\[GNUPG:\\] GOODSIG"
 
 # Disable command entry in all modes so passwords cannot be easily extracted
 # from running sessions
