@@ -5,8 +5,7 @@ source "gpg --decrypt --quiet --no-tty ~/.private/mutt.gpg |"
 set realname = "Caleb Maclennan"
 set hostname = alerque.com
 set from = caleb@alerque.com
-alternates caleb@(alerque|chiefworks|ouraynet|pld-linux).com \
-	alerque@gmail.com caleb@izmirprotestan.org
+alternates '(caleb|alerque)([-+].*)?@.*'
 
 # Default Mailbox options
 unset imap_passive
