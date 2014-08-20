@@ -1,5 +1,5 @@
 # Read passwords on startup from encrypted file
-source "gpg --decrypt --quiet --no-tty ~/.private/mutt.gpg |"
+source "gpg --decrypt --quiet --no-tty --batch ~/.private/mutt.gpg |"
 
 ## A little bit about me
 set realname = "Caleb Maclennan"
@@ -42,7 +42,7 @@ unset move
 set include
 set attribution = "%n wrote:"
 set sort = threads
-set sort_aux = last-date-received
+set sort_aux = reverse-last-date-received
 #set sort_re
 #set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 unset strict_threads
@@ -53,6 +53,7 @@ set print = ask-no
 set editor = "vim -c ':Fip'"
 set uncollapse_jump
 unset abort_nosubject
+set quit=ask-no
 ignore * unignore to x-spam-status
 hdr_order from reply-to to date subject x-label x-spam-status
 spam "X-Spam-Status: .*score=([-0-9.]+).*" "%1"
@@ -85,8 +86,7 @@ bind pager k previous-line
 bind pager j next-line
 bind index,pager n next-entry
 bind index,pager p previous-entry
-#bind editor <Tab> complete_query
-bind editor ^T complete
+bind editor <tab> complete
 
 # Macros
 #macro index S "gS!mairix "
@@ -94,23 +94,31 @@ macro index A "T~U\n;N"
 #macro index t "l~N\n"
 #macro index F "l~F\n"
 
-macro index e "<tag-pattern>~R !~D !~F<enter>\
-<tag-prefix><save-message>+[Gmail]/All <enter>" \
-"Archive"
-macro index e "<tag-pattern>~R !~D !~F<enter>\
-<tag-prefix><save-message>+[Gmail]/All <enter>" \
-"Archive"
+#macro index e "<tag-pattern>~R !~D !~F<enter>\
+#<tag-prefix><save-message>+[Gmail]/All <enter>" \
+#"Archive"
+macro index e "<save-message>+[Gmail]/All <enter>" "archive"
+macro pager e "<save-message>+[Gmail]/All <enter>" "archive"
 
 macro index,pager a "<pipe-message>goobook add<return>" "add sender to contacts"
 
+macro index gi "<change-folder> +INBOX<enter>" "Go to inbox"
+macro index ga "<change-folder> +[Gmail]/All <enter>" "Go to inbox"
+macro index gs "<change-folder> +[Gmail]/Sent <enter>" "Go to inbox"
+
 # Sidebar stuff
-set sidebar_visible
+unset sidebar_visible
 set sidebar_sort
 macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
 macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
-bind index,pager \CP sidebar-prev
-bind index,pager \CN sidebar-next
-bind index,pager \CO sidebar-open
+bind index,pager <up> sidebar-prev
+bind index,pager <down> sidebar-next
+bind index,pager <right> sidebar-open
+set sidebar_delim   = '│'
+set sidebar_width   = 32
+color sidebar_new color221 color233
+#set status_chars  = " *%A"
+#set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
 
 # Layout
 set status_on_top
