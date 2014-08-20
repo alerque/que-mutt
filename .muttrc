@@ -24,6 +24,9 @@ set postponed = +[Gmail]/Drafts
 unset record
 set smtp_url = smtps://$imap_user:$imap_pass@smtp.gmail.com
 
+# Address book connections
+set query_command = "goobook query "'%s'"
+
 # General options
 set charset = utf-8
 set use_from
@@ -82,6 +85,8 @@ bind pager k previous-line
 bind pager j next-line
 bind index,pager n next-entry
 bind index,pager p previous-entry
+#bind editor <Tab> complete_query
+bind editor ^T complete
 
 # Macros
 #macro index S "gS!mairix "
@@ -95,6 +100,8 @@ macro index e "<tag-pattern>~R !~D !~F<enter>\
 macro index e "<tag-pattern>~R !~D !~F<enter>\
 <tag-prefix><save-message>+[Gmail]/All <enter>" \
 "Archive"
+
+macro index,pager a "<pipe-message>goobook add<return>" "add sender to contacts"
 
 # Sidebar stuff
 set sidebar_visible
