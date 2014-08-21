@@ -1,7 +1,7 @@
 set ft=mail
 
 " Autocompplete email addresses for mutt
-autocmd FileType mail setlocal omnifunc=mailcomplete#Complete
+setlocal omnifunc=mailcomplete#Complete
 
 if !exists("*FirstInPost")
 	function FirstInPost (...) range
