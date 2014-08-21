@@ -39,7 +39,7 @@ function! mailcomplete#Format(contacts)
 	let contacts=map(copy(a:contacts), "split(v:val, '\t')")
 	let ret=[]
 	for [email, name] in contacts
-		call add(ret, printf("\"%s\" <%s>", name, email))
+		call add(ret, printf("%s <%s>", name, email))
 	endfor
 	return ret
 endfunc

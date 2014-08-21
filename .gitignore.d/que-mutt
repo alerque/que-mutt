@@ -6,3 +6,4 @@
 !/.vim
 !/.vim/autoload
 !/.vim/autoload/mailcomplete.vim
+!/.vim/mutt.vim

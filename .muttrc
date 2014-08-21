@@ -50,7 +50,7 @@ set autoedit
 set edit_headers
 set fast_reply
 set print = ask-no
-set editor = "vim -c ':Fip'"
+set editor = "vim -S '~/.vim/mutt.vim' -c ':Fip'"
 set uncollapse_jump
 unset abort_nosubject
 set quit=ask-no
@@ -90,7 +90,7 @@ bind editor <tab> complete
 
 # Macros
 #macro index S "gS!mairix "
-macro index A "T~U\n;N"
+macro index A "T~U<enter>;N"
 #macro index t "l~N\n"
 #macro index F "l~F\n"
 
