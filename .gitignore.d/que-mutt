@@ -3,6 +3,7 @@
 !/.gitignore.d/que-mutt
 !/.goobookrc
 !/.mutt
+!/.mutt/mailcap
 !/.mutt/muttrc
 !/.vim
 !/.vim/autoload
