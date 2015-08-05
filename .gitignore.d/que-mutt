@@ -2,7 +2,8 @@
 !/.gitignore.d
 !/.gitignore.d/que-mutt
 !/.goobookrc
-!/.muttrc
+!/.mutt
+!/.mutt/muttrc
 !/.vim
 !/.vim/autoload
 !/.vim/autoload/mailcomplete.vim
