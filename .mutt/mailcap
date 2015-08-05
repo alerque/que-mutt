@@ -1,3 +1,4 @@
+image/*; feh %s &; copiousoutput;
 application/pdf; zathura %s &; copiousoutput;
 application/msword; antiword %s; copiousoutput;
 text/html; uzbl-core -u %s; test=test -n "$DISPLAY"; needsterminal;
