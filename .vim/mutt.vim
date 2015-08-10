@@ -21,7 +21,10 @@ if !exists("*FirstInPost")
 			" We have reached the end of the headers.
 			if str == ''
 				:start
-				normal gg/\n\njyypO
+				/\n\n/+
+				if line('.') > 1
+					:put! =\"\n\n\"
+				endif
 				break
 			endif
 			let cur = cur + 1
