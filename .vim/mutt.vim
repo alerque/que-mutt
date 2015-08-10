@@ -42,7 +42,7 @@ set wrap
 set nosmartindent
 set textwidth=72
 set linebreak
-set formatoptions=2tcq
+set formatoptions=2tcqaw
 set digraph
 set spell!
 set display+=lastline
