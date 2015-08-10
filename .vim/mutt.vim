@@ -25,8 +25,12 @@ if !exists("*FirstInPost")
 			if str == ''
 				:start
 				/\n\n/+
-				if line('.') > 1
+				"if strlen(getlin(line('.'))) > 1
+				if line('$') > line('.')
 					:put! =\"\n\n\"
+				else
+					:put! =\"\n\"
+					+
 				endif
 				break
 			endif
