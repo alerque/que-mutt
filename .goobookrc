@@ -1,3 +1,4 @@
 [DEFAULT]
 email: alerque@gmail.com
-passwordeval: gpg --no-tty --quiet --batch --decrypt ~/.private/goobookpw.gpg
+oauth_db_filename: ~/.private/goobook_auth.json
+client_secret_filename: ~/.private/.goobook_client_secret.json
