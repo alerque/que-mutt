@@ -82,6 +82,7 @@ endif
 augroup mail_filetype
 	autocmd!
 	autocmd VimEnter * command! Fixq call FixFlowed()
+	autocmd VimEnter * set omnifunc=mailcomplete#Complete
 	autocmd BufWritePre * call FixIndented()
 	autocmd BufReadPost * call FixFlowed()
 augroup END
@@ -91,8 +92,8 @@ map j gj
 map k gk
 
 " Jump throuph things that get filled in
-map <Tab> :Fip<CR>
-imap <Tab> <Esc>:Fip<CR>
+map <C-n> :Fip<CR>
+imap <C-n> <Esc>:Fip<CR>
 
 " Set wrap properties
 set wrap
