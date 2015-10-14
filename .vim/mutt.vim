@@ -1,7 +1,7 @@
 set ft=mail
 
-" Autocompplete email addresses for mutt
-setlocal omnifunc=mailcomplete#Complete
+" Autocomplete email addresses for mutt
+set omnifunc=mailcomplete#Complete
 
 if !exists("*FirstInPost")
 	function FirstInPost (...) range
