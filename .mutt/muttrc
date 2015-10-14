@@ -98,14 +98,15 @@ macro index A "T~U<enter>;N"
 #macro index e "<tag-pattern>~R !~D !~F<enter>\
 #<tag-prefix><save-message>+[Gmail]/All <enter>" \
 #"Archive"
-macro index e "<save-message>+[Gmail]/All <enter>" "archive"
-macro pager e "<save-message>+[Gmail]/All <enter>" "archive"
+macro index,pager e "<save-message>+[Gmail]/All <enter>" "archive"
+macro index,pager D "<save-message>+[Gmail]/Spam <enter>" "mark as spam"
 
 macro index,pager a "<pipe-message>goobook add<return>" "add sender to contacts"
 
 macro index gi "<change-folder> +INBOX<enter>" "Go to inbox"
-macro index ga "<change-folder> +[Gmail]/All <enter>" "Go to inbox"
-macro index gs "<change-folder> +[Gmail]/Sent <enter>" "Go to inbox"
+macro index ga "<change-folder> +[Gmail]/All <enter>" "Go to all mail"
+macro index gs "<change-folder> +[Gmail]/Sent <enter>" "Go to sent"
+macro index gd "<change-folder> +[Gmail]/Drafts <enter>" "Go to drafts"
 
 # Sidebar stuff
 unset sidebar_visible
