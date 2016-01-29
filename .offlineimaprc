@@ -19,6 +19,11 @@ type = Gmail
 remoteuser = alerque
 remotepasseval = gpg_pw("offlineimap.gpg")
 realdelet = no
+;nametrans = lambda foldername: re.sub ('^\[gmail\]', 'bak',
+;                               re.sub ('sent_mail', 'sent',
+;                               re.sub ('starred', 'flagged',
+;                               re.sub (' ', '_', foldername.lower()))))
+;folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
 maxconnections = 3
 keepalive = 60
 holdconnectionopen = yes

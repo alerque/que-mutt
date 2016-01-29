@@ -26,9 +26,11 @@ set smtp_url = smtps://$imap_user:$imap_pass@smtp.gmail.com
 
 set folder = "~/Mail"
 source ~/.mutt/mailboxes
-set spoolfile = "+account/INBOX"
-set record = "+account/Sent\ Items"
-set postponed = "+account/Drafts"
+#mailboxes +INBOX
+set spoolfile = "+INBOX"
+set mbox = "+[Gmail]/All Mail"
+set postponed = "+[Gmail]/Drafts"
+unset record
 
 
 # Address book connections
@@ -47,10 +49,11 @@ set simple_search = "~f %s | ~s %s | ~y %s"
 unset mark_old
 unset move
 set include
+set delete
 set attribution = "%n wrote:"
 set sort = threads
 set sort_aux = reverse-last-date-received
-#set sort_re
+set sort_re
 #set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 unset strict_threads
 set autoedit
@@ -105,8 +108,9 @@ macro index A "T~U<enter>;N"
 #macro index e "<tag-pattern>~R !~D !~F<enter>\
 #<tag-prefix><save-message>+[Gmail]/All <enter>" \
 #"Archive"
-macro index,pager e "<save-message>+[Gmail]/All <enter>" "archive"
-macro index,pager D "<save-message>+[Gmail]/Spam <enter>" "mark as spam"
+macro index,pager e "<save-message>+[Gmail]/All Mail<enter>" "archive"
+macro index,pager D "<save-message>+[Gmail]/Trash<enter>" "mark as spam"
+macro index,pager S "<save-message>+[Gmail]/Spam<enter>" "mark as spam"
 
 macro index,pager a "<pipe-message>goobook add<return>" "add sender to contacts"
 
