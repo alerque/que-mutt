@@ -1,0 +1,33 @@
+[general]
+ui = ttyui
+accounts = caleb
+pythonfile = ~/.offlineimap.py
+maxsyncaccounts = 1
+
+[Account caleb]
+localrepository = caleb
+remoterepository = alerque-gmail
+autorefresh = 5
+quick = 10
+
+[Repository caleb]
+type = Maildir
+localfolders = ~/Mail
+
+[Repository alerque-gmail]
+type = Gmail
+remoteuser = alerque
+remotepasseval = gpg_pw("offlineimap.gpg")
+realdelet = no
+maxconnections = 3
+keepalive = 60
+holdconnectionopen = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[mbnames]
+enabled = yes
+filename = ~/.mutt/mailboxes
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"

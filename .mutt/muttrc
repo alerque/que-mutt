@@ -14,15 +14,22 @@ set mail_check = 120
 set imap_check_subscribed
 set ssl_force_tls
 
-# Account: alerque@gmail.com
-set folder = imaps://alerque@imap.gmail.com/
-set imap_user = alerque@gmail.com
-set imap_pass = $my_gmailpw
-set spoolfile = +INBOX
-#mailboxes = +INBOX
-set postponed = +[Gmail]/Drafts
+## Account: alerque@gmail.com
+#set folder = imaps://alerque@imap.gmail.com/
+#set imap_user = alerque@gmail.com
+#set imap_pass = $my_gmailpw
+#set spoolfile = +INBOX
+##mailboxes = +INBOX
+#set postponed = +[Gmail]/Drafts
 unset record
 set smtp_url = smtps://$imap_user:$imap_pass@smtp.gmail.com
+
+set folder = "~/Mail"
+source ~/.mutt/mailboxes
+set spoolfile = "+account/INBOX"
+set record = "+account/Sent\ Items"
+set postponed = "+account/Drafts"
+
 
 # Address book connections
 set query_command = "goobook query %s"
