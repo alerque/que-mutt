@@ -109,8 +109,8 @@ macro index A "T~U<enter>;N"
 #<tag-prefix><save-message>+[Gmail]/All Mail<enter>" \
 #"Archive"
 macro index,pager e "<save-message>+[Gmail].All Mail<enter>" "archive"
-macro index,pager D "<save-message>+[Gmail].Trash<enter>" "mark as spam"
-#macro index,pager S "<save-message>+[Gmail].Spam<enter>" "mark as spam"
+macro index,pager D "<save-message>+[Gmail].Trash<enter>" "discard"
+macro index,pager S "<save-message>+[Gmail].Spam<enter>" "mark as spam"
 
 macro index,pager a "<pipe-message>goobook add<return>" "add sender to contacts"
 
