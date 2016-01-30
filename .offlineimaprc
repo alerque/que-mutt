@@ -20,7 +20,7 @@ folderfilter = lambda foldername: foldername not in ['[Gmail]/Spam']
 [Repository alerque-gmail]
 type = Gmail
 remoteuser = alerque
-remotepasseval = gpg_pw("offlineimap.gpg")
+remotepasseval = gpg_pw("offlineimap")
 realdelet = no
 ; Convert spaces to non-breaking spaces for local mutt compatability
 nametrans = lambda foldername: re.sub (' ', ' ', foldername)
