@@ -16,22 +16,22 @@ set ssl_force_tls
 
 ## Account: alerque@gmail.com
 #set folder = imaps://alerque@imap.gmail.com/
-#set imap_user = alerque@gmail.com
-#set imap_pass = $my_gmailpw
+set imap_user = alerque@gmail.com
+set imap_pass = $my_gmailpw
 #set spoolfile = +INBOX
 ##mailboxes = +INBOX
 #set postponed = +[Gmail]/Drafts
-unset record
+#unset record
 set smtp_url = smtps://$imap_user:$imap_pass@smtp.gmail.com
 
 set folder = "~/Mail"
 source ~/.mutt/mailboxes
 #mailboxes +INBOX
 set spoolfile = "+INBOX"
-set mbox = "+[Gmail]/All Mail"
-set postponed = "+[Gmail]/Drafts"
-unset record
-
+#set mbox = "+[Gmail].All Mail"
+set record = "+[Gmail].Sent Mail"
+set postponed = "+[Gmail].Drafts"
+#unset record
 
 # Address book connections
 set query_command = "goobook query %s"
@@ -106,18 +106,18 @@ macro index A "T~U<enter>;N"
 #macro index F "l~F\n"
 
 #macro index e "<tag-pattern>~R !~D !~F<enter>\
-#<tag-prefix><save-message>+[Gmail]/All <enter>" \
+#<tag-prefix><save-message>+[Gmail]/All Mail<enter>" \
 #"Archive"
-macro index,pager e "<save-message>+[Gmail]/All Mail<enter>" "archive"
-macro index,pager D "<save-message>+[Gmail]/Trash<enter>" "mark as spam"
-macro index,pager S "<save-message>+[Gmail]/Spam<enter>" "mark as spam"
+macro index,pager e "<save-message>+[Gmail].All Mail<enter>" "archive"
+macro index,pager D "<save-message>+[Gmail].Trash<enter>" "mark as spam"
+#macro index,pager S "<save-message>+[Gmail].Spam<enter>" "mark as spam"
 
 macro index,pager a "<pipe-message>goobook add<return>" "add sender to contacts"
 
 macro index gi "<change-folder> +INBOX<enter>" "Go to inbox"
-macro index ga "<change-folder> +[Gmail]/All <enter>" "Go to all mail"
-macro index gs "<change-folder> +[Gmail]/Sent <enter>" "Go to sent"
-macro index gd "<change-folder> +[Gmail]/Drafts <enter>" "Go to drafts"
+macro index ga "<change-folder> +[Gmail].All Mail<enter>" "Go to all mail"
+macro index gs "<change-folder> +[Gmail].Sent Mail<enter>" "Go to sent"
+macro index gd "<change-folder> +[Gmail].Drafts<enter>" "Go to drafts"
 
 # Sidebar stuff
 unset sidebar_visible

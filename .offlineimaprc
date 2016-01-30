@@ -13,18 +13,18 @@ quick = 10
 [Repository caleb]
 type = Maildir
 localfolders = ~/Mail
+; Convert non-breaking spaces to spaces
+nametrans = lambda foldername: re.sub (' ', ' ', foldername)
 
 [Repository alerque-gmail]
 type = Gmail
 remoteuser = alerque
 remotepasseval = gpg_pw("offlineimap.gpg")
 realdelet = no
-;nametrans = lambda foldername: re.sub ('^\[gmail\]', 'bak',
-;                               re.sub ('sent_mail', 'sent',
-;                               re.sub ('starred', 'flagged',
-;                               re.sub (' ', '_', foldername.lower()))))
-;folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
-maxconnections = 3
+; Convert spaces to non-breaking spaces
+nametrans = lambda foldername: re.sub (' ', ' ', foldername)
+folderfilter = lambda foldername: foldername not in ['[Gmail]/Spam']
+maxconnections = 10
 keepalive = 60
 holdconnectionopen = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
@@ -33,6 +33,6 @@ sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 enabled = yes
 filename = ~/.mutt/mailboxes
 header = "mailboxes "
-peritem = "+%(accountname)s/%(foldername)s"
+peritem = "+%(foldername)s"
 sep = " "
 footer = "\n"
