@@ -60,7 +60,7 @@ set autoedit
 set edit_headers
 set fast_reply
 set print = ask-no
-set editor = "$EDITOR -S '~/.config/nvim/mutt.vim' -c ':Fip'"
+set editor = "$EDITOR"
 set text_flowed
 set uncollapse_jump
 unset abort_nosubject
