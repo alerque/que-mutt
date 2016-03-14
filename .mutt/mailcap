@@ -1,4 +1,4 @@
-image/*; feh %s &; copiousoutput;
+image/*; feh -. %s &; copiousoutput;
 application/pdf; zathura %s &; copiousoutput;
 application/msword; antiword %s; copiousoutput;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document; pandoc %s --to markdown; copiousoutput;
