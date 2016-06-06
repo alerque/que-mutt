@@ -15,7 +15,8 @@ type = Maildir
 localfolders = ~/Mail
 ; Convert non-breaking spaces to spaces for normal Gmail usage
 nametrans = lambda foldername: re.sub (' ', ' ', foldername)
-folderfilter = lambda foldername: foldername not in ['[Gmail]/Spam']
+;folderfilter = lambda foldername: foldername not in ['[Gmail]/Spam', 'cvs', 'pld', '[Gmail]All Mail']
+folderfilter = lambda foldername: foldername not in ['[Gmail]/Spam', 'cvs', 'pld']
 
 [Repository alerque-gmail]
 type = Gmail
@@ -24,7 +25,8 @@ remotepasseval = gpg_pw("offlineimap")
 realdelet = no
 ; Convert spaces to non-breaking spaces for local mutt compatability
 nametrans = lambda foldername: re.sub (' ', ' ', foldername)
-folderfilter = lambda foldername: foldername not in ['[Gmail]/Spam']
+;folderfilter = lambda foldername: foldername not in ['[Gmail]/Spam', 'cvs', 'pld', '[Gmail]All Mail']
+folderfilter = lambda foldername: foldername not in ['[Gmail]/Spam', 'cvs', 'pld']
 maxconnections = 10
 keepalive = 60
 holdconnectionopen = yes
