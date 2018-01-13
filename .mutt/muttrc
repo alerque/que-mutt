@@ -89,7 +89,7 @@ bind index L limit
 bind pager u exit
 bind index u sync-mailbox
 bind index <space> collapse-thread
-#bind index,pager u undelete-message
+bind index,pager D undelete-message
 bind index,pager R group-reply
 bind pager <up> previous-line
 bind pager <down> next-line
@@ -109,7 +109,7 @@ macro index A "T~U<enter>;N"
 #<tag-prefix><save-message>+[Gmail]/All Mail<enter>" \
 #"Archive"
 macro index,pager e "<save-message>+[Gmail].All Mail<enter>" "archive"
-macro index,pager D "<save-message>+[Gmail].Trash<enter>" "discard"
+# macro index,pager D "<save-message>+[Gmail].Trash<enter>" "discard"
 macro index,pager S "<save-message>+[Gmail].Spam<enter>" "mark as spam"
 
 macro index,pager a "<pipe-message>goobook add<return>" "add sender to contacts"
