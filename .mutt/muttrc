@@ -80,6 +80,7 @@ set pager_stop
 set folder_format = "(%N) %f"
 
 # Keybindings
+bind index,pager g noop
 #bind index,pager l edit-label
 bind index gg first-entry
 bind pager gg top
@@ -121,13 +122,12 @@ macro index gd "<change-folder> +[Gmail].Drafts<enter>" "Go to drafts"
 
 # Sidebar stuff
 unset sidebar_visible
-set sidebar_sort
+set sidebar_sort_method = new
 macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
 macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
 bind index,pager <up> sidebar-prev
 bind index,pager <down> sidebar-next
 bind index,pager <right> sidebar-open
-set sidebar_delim   = '│'
 set sidebar_width   = 32
 color sidebar_new color221 color233
 #set status_chars  = " *%A"
