@@ -68,6 +68,7 @@ set quit=ask-no
 ignore * unignore to x-spam-status
 hdr_order from reply-to to date subject x-label x-spam-status
 spam "X-Spam-Status: .*score=([-0-9.]+).*" "%1"
+set skip_quoted_offset = 3
 
 # Setup caches (~/.cache should be encrypted fs and/or RAM disk)
 set header_cache = ~/.cache/mutt/headers/
@@ -99,6 +100,7 @@ bind pager j next-line
 bind index,pager n next-entry
 bind index,pager p previous-entry
 bind editor <tab> complete
+bind index,pager s skip-quoted
 
 # Macros
 #macro index S "gS!mairix "
