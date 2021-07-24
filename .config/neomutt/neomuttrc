@@ -199,7 +199,7 @@ set pgp_autosign
 bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
 
 # Setup HTML mail viewing, much like http://jasonwryan.com/blog/2012/05/12/mutt/
-set mailcap_path = "~/.mutt/mailcap"
+set mailcap_path = "~/.config/neomutt/mailcap"
 auto_view text/html
 alternative_order text/plain text/enriched text/html
 bind attach <return> view-mailcap

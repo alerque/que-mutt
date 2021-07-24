@@ -1,9 +1,9 @@
 *
+!/.config/neomutt/mailcap
+!/.config/neomutt/neomuttrc
 !/.config/nvim/autoload/mailcomplete.vim
 !/.gitignore.d/que-mutt
 !/.goobookrc
 !/.local/systemd/user/offlineimap.service
-!/.mutt/mailcap
-!/.mutt/muttrc
 !/.offlineimap.py
 !/.offlineimaprc
