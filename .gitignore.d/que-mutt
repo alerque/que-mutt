@@ -1,16 +1,8 @@
 *
-!/.config
-!/.config/nvim
-!/.config/nvim/autoload
 !/.config/nvim/autoload/mailcomplete.vim
-!/.gitignore.d
 !/.gitignore.d/que-mutt
 !/.goobookrc
-!/.local
-!/.local/systemd
-!/.local/systemd/user
 !/.local/systemd/user/offlineimap.service
-!/.mutt
 !/.mutt/mailcap
 !/.mutt/muttrc
 !/.offlineimap.py
